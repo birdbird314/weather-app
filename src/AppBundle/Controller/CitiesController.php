@@ -36,6 +36,15 @@ class CitiesController extends Controller
        return $this->noContentResponse();
     }
 
+    /**
+     * @Route("/city/remove/{id}", name="remove_city", methods={"POST"})
+     */
+    public function removeAction($id, CitiesService $citiesService)
+    {
+       $citiesService->removeById($id);
+       return $this->noContentResponse();
+    }
+
     private function cityToArray(City $city)
     {
         return [

@@ -37,4 +37,10 @@ class CitiesService
             ->setContryCode($countryCode);
         $this->cityRepository->add($city);
     }
+
+    public function removeById($id)
+    {
+        $city = $this->cityRepository->find($id);
+        $this->cityRepository->remove($city);
+    }
 }

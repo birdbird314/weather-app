@@ -25,4 +25,10 @@ class CityRepository extends \Doctrine\ORM\EntityRepository
         $this->_em->persist($city);
         $this->_em->flush();
     }
+
+    public function remove(City $city)
+    {
+        $this->_em->remove($city);
+        $this->_em->flush();
+    }
 }
