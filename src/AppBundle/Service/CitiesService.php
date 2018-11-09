@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Repository\CityRepository;
+use AppBundle\Entity\City;
 
 class CitiesService
 {
@@ -27,5 +28,13 @@ class CitiesService
     public function findById($id)
     {
         return $this->cityRepository->find($id);
+    }
+
+    public function add($cityName, $countryCode)
+    {
+        $city = (new City())
+            ->setCityName($cityName)
+            ->setContryCode($countryCode);
+        $this->cityRepository->add($city);
     }
 }

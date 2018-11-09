@@ -19,4 +19,10 @@ class CityRepository extends \Doctrine\ORM\EntityRepository
     {
         parent::__construct($em, new ClassMetadata(City::class));
     }
+
+    public function add(City $city)
+    {
+        $this->_em->persist($city);
+        $this->_em->flush();
+    }
 }

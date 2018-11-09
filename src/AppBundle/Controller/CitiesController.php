@@ -6,6 +6,8 @@ use AppBundle\Entity\City;
 use AppBundle\Service\CitiesService;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CitiesController extends Controller
 {
@@ -22,11 +24,30 @@ class CitiesController extends Controller
         return $this->json($response);
     }
 
+    /**
+     * @Route("/city/add", name="add_city", methods={"POST"})
+     */
+    public function addAction(CitiesService $citiesService, Request $request)
+    {
+       $citiesService->add(
+           $request->request->get('name'),
+           $request->request->get('countryCode')
+       ); 
+       return $this->noContentResponse();
+    }
+
     private function cityToArray(City $city)
     {
         return [
             'name' => $city->getCityName(),
             'countryCode' => $city->getContryCode(),
         ];
+    }
+
+    private function noContentResponse()
+    {
+        $response = new Response();
+        $response->setStatusCode(Response::HTTP_NO_CONTENT);
+        return $response;
     }
 }
