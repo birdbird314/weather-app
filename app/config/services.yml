@@ -40,7 +40,12 @@ services:
         arguments:
             $openWeatherKey: '%open_weather_map_key%'
 
+    # Weather providers aliases
     provider.openWeatherMap:
         alias: AppBundle\Service\WeatherProvider\OpenWeatherMap\OpenWeatherMapProvider
+        public: true
+
+    provider.dummy:
+        alias: AppBundle\Service\WeatherProvider\Dummy\DummyWeatherProvider
         public: true
 
