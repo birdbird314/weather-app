@@ -20,4 +20,12 @@ class CitiesService
     {
         return $this->cityRepository->findAll();
     }
+
+    /**
+     * @return City
+     */
+    public function findById($id)
+    {
+        return $this->cityRepository->find($id);
+    }
 }
