@@ -2,6 +2,9 @@
 
 namespace AppBundle\Service\WeatherProvider\OpenWeatherMap;
 
+use AppBundle\Service\WeatherProvider\WeatherSourcingFailedException;
+
+
 class OpenWeatherMapClient
 {
     private $openWeatherKey;
@@ -15,6 +18,9 @@ class OpenWeatherMapClient
         $session = curl_init($this->queryUrl($cityName, $countryCode));
         curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($session);
+        if (!$response) {
+            throw new WeatherSourcingFailedException();
+        }
         return json_decode($response);
     }
 

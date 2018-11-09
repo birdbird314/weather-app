@@ -6,6 +6,7 @@ use AppBundle\Entity\City;
 use AppBundle\Service\CitiesService;
 use AppBundle\Service\WeatherProvider\Weather;
 use AppBundle\Service\WeatherProvider\WeatherProvider;
+use AppBundle\Service\WeatherProvider\WeatherSourcingFailedException;
 
 class WeatherService 
 {
@@ -22,6 +23,10 @@ class WeatherService
     public function currentWeather($cityId): Weather 
     {
         $city = $this->citiesService->findById($cityId);
-        return $this->weatherProvider->currentWeather($city);
+        try {
+            return $this->weatherProvider->currentWeather($city);
+        } catch (WeatherSourcingFailedException $e) {
+            return (new Weather());
+        }
     }
 }
