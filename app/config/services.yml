@@ -33,3 +33,12 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    AppBundle\Service\WeatherProvider\OpenWeatherMap\OpenWeatherMapClient:
+        arguments:
+            $openWeatherKey: '%open_weather_map_key%'
+
+    provider.openWeatherMap:
+        alias: AppBundle\Service\WeatherProvider\OpenWeatherMap\OpenWeatherMapProvider
+        public: true
+

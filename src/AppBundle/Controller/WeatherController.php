@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Service\WeatherService;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Service\WeatherProvider\OpenWeatherMap\OpenWeatherMapClient;
 
 class WeatherController extends Controller
 {
