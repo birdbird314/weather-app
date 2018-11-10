@@ -40,6 +40,10 @@ services:
         arguments:
             $openWeatherKey: '%open_weather_map_key%'
 
+    AppBundle\Service\WeatherCache\WeatherCache:
+        arguments:
+            $ttlMinutes: '%weather_cache_ttl_minutes%'
+
     # Weather providers aliases
     provider.openWeatherMap:
         alias: AppBundle\Service\WeatherProvider\OpenWeatherMap\OpenWeatherMapProvider

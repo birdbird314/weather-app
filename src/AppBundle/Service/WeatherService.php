@@ -7,6 +7,7 @@ use AppBundle\Service\CitiesService;
 use AppBundle\Service\WeatherProvider\Weather;
 use AppBundle\Service\WeatherProvider\WeatherProvider;
 use AppBundle\Service\WeatherProvider\WeatherSourcingFailedException;
+use AppBundle\Service\WeatherCache\WeatherCache;
 
 class WeatherService 
 {
@@ -14,19 +15,28 @@ class WeatherService
     private $citiesService;
     /** @var WeatherProvider */
     private $weatherProvider;
+    /** @var WeatherCache */
+    private $weatherCache;
 
-    public function __construct(CitiesService $citiesService, WeatherProvider $weatherProvider) {
+    public function __construct(
+        CitiesService $citiesService, 
+        WeatherProvider $weatherProvider,
+        WeatherCache $weatherCache
+    ) {
         $this->citiesService = $citiesService;
         $this->weatherProvider = $weatherProvider;
+        $this->weatherCache = $weatherCache;
     }
 
     public function currentWeather($cityId): Weather 
     {
         $city = $this->citiesService->findById($cityId);
         try {
-            return $this->weatherProvider->currentWeather($city);
+            $weather = $this->weatherProvider->currentWeather($city);
+            $this->weatherCache->cacheIfNeeded($cityId, $weather);
+            return $weather;
         } catch (WeatherSourcingFailedException $e) {
-            return (new Weather());
+            return $this->weatherCache->get($cityId);
         }
     }
 }

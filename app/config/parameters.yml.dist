@@ -19,3 +19,6 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
     open_weather_map_key: ~ 
+
+    # A number of minutes that must pass before weather is updated in cache
+    weather_cache_ttl_minutes: ~
