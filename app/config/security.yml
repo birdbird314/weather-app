@@ -28,4 +28,10 @@ security:
             #http_basic: ~
 
             # https://symfony.com/doc/current/security/form_login_setup.html
-            form_login: ~
+            form_login:
+                check_path: /login
+                login_path: access_denied # do not redirect to login page, respond with access_denied instead
+                username_parameter: username
+                password_parameter: password
+                always_use_default_target_path: true
+                default_target_path: login_success

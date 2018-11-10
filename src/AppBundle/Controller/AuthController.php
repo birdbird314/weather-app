@@ -20,11 +20,42 @@ class AuthController extends Controller
         $userService->register($username, $password);
         return $this->noContentResponse();
     }
+    
+    /**
+     * @Route("/login-success", name="login_success")
+     */
+    public function loginSuccess()
+    {
+        return $this->noContentResponse();
+    }
+
+    /**
+     * @Route("/login", methods={"POST"})
+     */
+    public function login()
+    {
+        return $this->noContentResponse();
+    }
+
+    /**
+     * @Route("/access-denied", name="access_denied")
+     */
+    public function accessDenied()
+    {
+        return $this->forbiddenResponse();
+    }
 
     private function noContentResponse()
     {
         $response = new Response();
         $response->setStatusCode(Response::HTTP_NO_CONTENT);
+        return $response;
+    }
+
+    private function forbiddenResponse()
+    {
+        $response = new Response();
+        $response->setStatusCode(Response::HTTP_FORBIDDEN);
         return $response;
     }
 }
