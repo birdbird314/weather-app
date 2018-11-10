@@ -26,7 +26,7 @@ class AuthController extends Controller
      */
     public function loginSuccess()
     {
-        return $this->noContentResponse();
+        return $this->json('logged in');
     }
 
     /**
