@@ -18,6 +18,7 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
 
+    # Your app id key from openweathermap.org
     open_weather_map_key: ~ 
 
     # A number of minutes that must pass before weather is updated in cache
