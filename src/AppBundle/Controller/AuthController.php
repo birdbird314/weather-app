@@ -29,7 +29,12 @@ class AuthController extends Controller
      */
     public function loginSuccess()
     {
-        return $this->json('logged in');
+        $user = $this->getUser();
+        $isAdmin = in_array('ROLE_ADMIN', $user->getRoles());
+        return $this->json([
+            'isAdmin' => $isAdmin,
+            'username' => $user->getUsername(), 
+        ]);
     }
 
     /**
