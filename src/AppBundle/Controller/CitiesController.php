@@ -4,13 +4,16 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\City;
 use AppBundle\Service\CitiesService;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Controller\ResponsesTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class CitiesController extends Controller
 {
+    use ResponsesTrait;
+
     /**
      * @Route("/city/all", name="all_cities", methods={"GET"})
      */
@@ -51,12 +54,5 @@ class CitiesController extends Controller
             'name' => $city->getCityName(),
             'countryCode' => $city->getContryCode(),
         ];
-    }
-
-    private function noContentResponse()
-    {
-        $response = new Response();
-        $response->setStatusCode(Response::HTTP_NO_CONTENT);
-        return $response;
     }
 }

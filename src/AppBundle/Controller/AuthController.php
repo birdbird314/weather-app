@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Service\UserService;
+use AppBundle\Controller\ResponsesTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,6 +11,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class AuthController extends Controller
 {
+    use ResponsesTrait;
+
     /**
      * @Route("/register", name="register", methods={"POST"})
      */
@@ -57,19 +60,5 @@ class AuthController extends Controller
     public function accessDenied()
     {
         return $this->forbiddenResponse();
-    }
-
-    private function noContentResponse()
-    {
-        $response = new Response();
-        $response->setStatusCode(Response::HTTP_NO_CONTENT);
-        return $response;
-    }
-
-    private function forbiddenResponse()
-    {
-        $response = new Response();
-        $response->setStatusCode(Response::HTTP_FORBIDDEN);
-        return $response;
     }
 }
