@@ -2,6 +2,10 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\User;
+use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\EntityManagerInterface;
+
 /**
  * UserRepository
  *
@@ -10,4 +14,14 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function __construct(EntityManagerInterface $em) 
+    {
+        parent::__construct($em, new ClassMetadata(User::class));
+    }
+
+    public function add(User $user)
+    {
+        $this->_em->persist($user);
+        $this->_em->flush();
+    }
 }
