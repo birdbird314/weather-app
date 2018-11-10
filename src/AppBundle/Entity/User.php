@@ -36,6 +36,12 @@ class User implements UserInterface, \Serializable
      */
     private $password;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=255)
+     */
+    private $role;
 
     /**
      * Get id
@@ -95,6 +101,20 @@ class User implements UserInterface, \Serializable
         return $this->password;
     }
 
+    /**
+     * Set role
+     *
+     * @param string $role
+     *
+     * @return User
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
     public function getSalt()
     {
         return null;
@@ -102,7 +122,7 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return array($this->role);
     }
 
     public function eraseCredentials()
