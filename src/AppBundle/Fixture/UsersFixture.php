@@ -17,13 +17,22 @@ class UsersFixture extends Fixture
     }
     public function load(ObjectManager $manager)
     {
-        $user = new User();
-        $password = $this->encoder->encodePassword($user, 'admin');
-        $user
+        $admin = new User();
+        $adminPassword = $this->encoder->encodePassword($admin, 'pass');
+        $admin
             ->setUsername('admin')
-            ->setPassword($password);
+            ->setPassword($adminPassword)
+            ->setRole('ROLE_ADMIN');
+
+        $regularUser = new User();
+        $regularUserPassword = $this->encoder->encodePassword($regularUser, 'pass');
+        $regularUser
+            ->setUsername('regularUser')
+            ->setPassword($regularUserPassword)
+            ->setRole('ROLE_USER');
         
-        $manager->persist($user);
+        $manager->persist($admin);
+        $manager->persist($regularUser);
         $manager->flush();
     }
 }
