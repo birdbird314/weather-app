@@ -24,7 +24,8 @@ class UserService
         $encodedPassword = $this->encoder->encodePassword($user, $password);
         $user
             ->setUsername($username)
-            ->setPassword($encodedPassword);
+            ->setPassword($encodedPassword)
+            ->setRole('ROLE_USER');
         $this->repository->add($user);
     }
 }

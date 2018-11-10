@@ -21,7 +21,7 @@ class AuthController extends Controller
         $username = $request->request->get('username');
         $password = $request->request->get('password');
         $userService->register($username, $password);
-        return $this->noContentResponse();
+        return $this->json('registered');
     }
     
     /**
