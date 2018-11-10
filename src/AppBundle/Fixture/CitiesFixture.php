@@ -19,9 +19,21 @@ class CitiesFixture extends Fixture
         $chicago
             ->setCityName('Chicago')
             ->setContryCode('US');
+
+        $warsaw = new City();
+        $warsaw
+            ->setCityName('Warsaw')
+            ->setContryCode('PL');
+        
+        $budapest = new City();
+        $budapest
+            ->setCityName('Budapest')
+            ->setContryCode('HU');
         
         $manager->persist($london);
         $manager->persist($chicago);
+        $manager->persist($warsaw);
+        $manager->persist($budapest);
 
         $manager->flush();
     }
