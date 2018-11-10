@@ -13,7 +13,7 @@ php bin/console doctrine:fixtures:load
 
 Users
 ---------------------
-By default after executing `doctrine:fixtures:load` there will be one user with `ROLE_ADMIN` (username: admin, password... guess what: admin) that is able to access /admin/* routes, so he can:
+By default after executing `doctrine:fixtures:load` there will be one user with `ROLE_ADMIN` (username: admin, password: pass) that is able to access /admin/* routes, so he can:
 * add new cities
 * remove existing cities
 * choose which `WeatherProvider` will be used
