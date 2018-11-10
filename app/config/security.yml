@@ -30,6 +30,8 @@ security:
             # https://symfony.com/doc/current/security/form_login_setup.html
             logout:
                 path: logout
+                target: logout_success
+                
             form_login:
                 check_path: login
                 login_path: access_denied # do not redirect to login page, respond with access_denied instead

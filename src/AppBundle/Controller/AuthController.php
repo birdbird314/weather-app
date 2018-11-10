@@ -45,6 +45,14 @@ class AuthController extends Controller
     }
 
     /**
+     * @Route("/logout-success", name="logout_success")
+     */
+    public function logoutSuccess()
+    {
+        return $this->json('logged out');
+    }
+
+    /**
      * @Route("/access-denied", name="access_denied")
      */
     public function accessDenied()
