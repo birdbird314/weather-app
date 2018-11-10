@@ -51,6 +51,7 @@ class CitiesController extends Controller
     private function cityToArray(City $city)
     {
         return [
+            'id' => $city->getId(),
             'name' => $city->getCityName(),
             'countryCode' => $city->getContryCode(),
         ];
