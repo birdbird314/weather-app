@@ -22,7 +22,7 @@ class AuthController extends Controller
     }
     
     /**
-     * @Route("/login-success", name="login_success")
+     * @Route("/login/login-success", name="login_success")
      */
     public function loginSuccess()
     {
@@ -30,11 +30,18 @@ class AuthController extends Controller
     }
 
     /**
-     * @Route("/login", methods={"POST"})
+     * @Route("/login", name="login", methods={"POST"})
      */
     public function login()
     {
         return $this->noContentResponse();
+    }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logout()
+    {
     }
 
     /**

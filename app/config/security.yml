@@ -28,10 +28,18 @@ security:
             #http_basic: ~
 
             # https://symfony.com/doc/current/security/form_login_setup.html
+            logout:
+                path: logout
             form_login:
-                check_path: /login
+                check_path: login
                 login_path: access_denied # do not redirect to login page, respond with access_denied instead
                 username_parameter: username
                 password_parameter: password
                 always_use_default_target_path: true
                 default_target_path: login_success
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/logout, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/access-denied, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_USER }
