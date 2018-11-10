@@ -25,7 +25,7 @@ class CitiesController extends Controller
     }
 
     /**
-     * @Route("/city/add", name="add_city", methods={"POST"})
+     * @Route("/admin/city/add", name="add_city", methods={"POST"})
      */
     public function addAction(CitiesService $citiesService, Request $request)
     {
@@ -37,7 +37,7 @@ class CitiesController extends Controller
     }
 
     /**
-     * @Route("/city/remove/{id}", name="remove_city", methods={"POST"})
+     * @Route("/admin/city/remove/{id}", name="remove_city", methods={"POST"})
      */
     public function removeAction($id, CitiesService $citiesService)
     {
